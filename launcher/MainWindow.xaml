@@ -1,0 +1,34 @@
+﻿<Controls:MetroWindow x:Class="NorthstarLauncher.MainWindow"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NorthstarLauncher"
+        mc:Ignorable="d"
+        Title="Northstar Launcher" Height="450" Width="800" AllowDrop="True" Drop="Window_Drop">
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Margin="0,20,0,20" x:Name="image1" Source="explodedview.jpg"/>
+            <Grid Grid.Column="1" Margin="50,20,50,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Vertical">
+                    <TextBlock>Northstar SteamVR Calibration File Path</TextBlock>
+                    <TextBox Text="{Binding Source={StaticResource Settings}, Path=Default.SteamVRCalibrationPath}" />
+                    <CheckBox x:Name="backupConfigs" IsChecked="True">Backup Configs</CheckBox>
+                </StackPanel>
+                <Button Style="{DynamicResource SquareButtonStyle}" Grid.Row="1" x:Name="button" Content="Kill SteamVR" Margin="0,25,0,25" Click="KillSteamVRButton_Click" FontSize="24"/>
+                <Button Style="{DynamicResource AccentedSquareButtonStyle}" Grid.Row="2" x:Name="button2" Content="Launch SteamVR" Margin="0,25,0,50" Click="LaunchSteamVRButton_Click" FontSize="36"/>
+            </Grid>
+        </Grid>
+
+    </Grid>
+</Controls:MetroWindow>

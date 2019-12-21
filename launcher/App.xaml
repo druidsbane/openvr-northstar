@@ -1,0 +1,29 @@
+﻿<Application x:Class="NorthstarLauncher.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:NorthstarLauncher"
+             xmlns:properties="clr-namespace:Properties"
+              Exit="OnExit"
+             StartupUri="MainWindow.xaml" Startup="Application_Startup">
+    <Application.Resources>
+        <ResourceDictionary>
+            <properties:Settings x:Key="Settings" />
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+
+                <!-- accent resource -->
+                <!-- change "Cobalt" to the accent color you want -->
+
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Orange.xaml" />
+
+                <!-- theme resource -->
+                <!-- change "BaseLight" to the theme you want -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </Application.Resources>
+</Application>

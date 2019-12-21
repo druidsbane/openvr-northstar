@@ -1,0 +1,19 @@
+﻿{
+  "driver_northstar": {
+    "edidVid": 53313,
+    "enable": true,
+    "modelNumber": "0",
+    "secondsFromVsyncToPhotons": 0.035000000149011612,
+    "serialNumber": "1024"
+  },
+  "steamvr": {
+    "requireHmd": false,
+    "activateMultipleDrivers": true,
+    "forceFadeOnBadTracking": false,
+    "pauseCompositorOnStandby": false,
+    "enableHomeApp": false
+  },
+  "power": {
+    "pauseCompositorOnStandby": false
+  }
+}
