@@ -3,7 +3,6 @@ set(TARGET_NAME driver_northstar)
 add_library(${TARGET_NAME} SHARED
   driverlog.cpp
   driverlog.h
-  driver_sample.cpp
   deformation_northstar.h
   deformation_northstar.cpp
   driverlog_northstar.h
