@@ -77,6 +77,7 @@ namespace NorthstarLauncher
             UpdateSteamVRSystemConfig();
             InstallSteamVRDriver();
             InstallLeapSteamVRDriver();
+            InstallStructureCoreSteamVRDriver();
             LaunchSteamVR();
             AdjustNorthstarResolution();
 
@@ -117,6 +118,8 @@ namespace NorthstarLauncher
             steamvrConfig["direct_mode"]["enable"] = false;
             steamvrConfig["steamvr"]["activateMultipleDrivers"] = true;
 
+            applyTrackingOverrides(steamvrConfig);
+
             WriteAllTextReadOnly(vrSettingsPath, steamvrConfig.ToString());
         }
 
@@ -136,7 +139,22 @@ namespace NorthstarLauncher
             }
             steamvrConfig["direct_mode"]["enable"] = false;
 
+            applyTrackingOverrides(steamvrConfig);
+
             WriteAllTextReadOnly(systemVrSettingsPath, steamvrConfig.ToString());
+        }
+
+        private void applyTrackingOverrides(JObject steamvrConfig)
+        {
+            steamvrConfig["TrackingOverrides"] = new JObject();
+            if (installStructureCoreDriver.IsChecked == true)
+            {
+                steamvrConfig["TrackingOverrides"]["/devices/structurecore/1337821"] = "/user/head";
+            }
+            else if (installT265Driver.IsChecked == true)
+            {
+                //steamvrConfig["TrackingOverrides"]["/devices/t265/<serial>"] = "/user/head";
+            }
         }
 
         private void BackupFile(string path)
@@ -216,6 +234,28 @@ namespace NorthstarLauncher
                              select el).FirstOrDefault();
             item.SetAttributeValue("value", "index");
             xdoc.Save(config);
+        }
+
+        private void InstallStructureCoreSteamVRDriver()
+        {
+            if (installStructureCoreDriver.IsChecked != true)
+            {
+                return;
+            }
+
+            var driverDir = steamvrRoot + @"steamapps/common/SteamVR/drivers/structurecore";
+            if (Directory.Exists(driverDir))
+            {
+                Directory.Delete(driverDir, true);
+            }
+
+            var structureCoreDriverZip = @"openvr-structurecore.zip";
+            if (!File.Exists(structureCoreDriverZip))
+            {
+                return;
+            }
+
+            ZipFile.ExtractToDirectory(structureCoreDriverZip, driverDir);
         }
 
         private void CopyReadOnly(string src, string dest)

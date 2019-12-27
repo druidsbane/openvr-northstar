@@ -6,6 +6,16 @@
     "secondsFromVsyncToPhotons": 0.035000000149011612,
     "serialNumber": "1024"
   },
+  "driver_structurecore": {
+    "enable": true,
+    "edidVid": 53317,
+    "modelNumber": "133782",
+    "secondsFromVsyncToPhotons": 0.035000000149011612,
+    "serialNumber": "1337821"
+  },
+  "TrackingOverrides": {
+    "/devices/structurecore/1337821": "/user/head"
+  },
   "steamvr": {
     "requireHmd": false,
     "activateMultipleDrivers": true,

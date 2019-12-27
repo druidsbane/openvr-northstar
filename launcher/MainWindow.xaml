@@ -6,7 +6,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NorthstarLauncher"
         mc:Ignorable="d"
-        Title="Northstar Launcher" Height="450" Width="800" AllowDrop="True" Drop="Window_Drop">
+        Title="Northstar Launcher" Height="450" Width="800" AllowDrop="True" Drop="Window_Drop"
+                      Icon="Resources/icon.ico">
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -16,19 +17,20 @@
             <Image Grid.Column="0" Margin="0,20,0,20" x:Name="image1" Source="explodedview.jpg"/>
             <Grid Grid.Column="1" Margin="50,20,50,20">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="2.5*"/>
+                    <RowDefinition Height="3*"/>
                     <RowDefinition Height="2*"/>
-                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="3*"/>
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" Orientation="Vertical">
                     <Label>Northstar SteamVR Calibration File Path</Label>
                     <TextBox Text="{Binding Source={StaticResource Settings}, Path=Default.SteamVRCalibrationPath}" />
                     <CheckBox x:Name="backupConfigs" IsChecked="True">Backup Configs</CheckBox>
                     <CheckBox x:Name="installLeapDriver" IsChecked="True">Install Leap Driver</CheckBox>
-                    <CheckBox x:Name="installT265Driver" IsChecked="False" IsEnabled="False">Install T265 Driver</CheckBox>
+                    <CheckBox x:Name="installStructureCoreDriver" IsChecked="True">Install Structure Core Driver and Override Tracking</CheckBox>
+                    <CheckBox x:Name="installT265Driver" IsChecked="False" IsEnabled="False">Install T265 Driver and Override Tracking</CheckBox>
                 </StackPanel>
                 <Button Style="{DynamicResource SquareButtonStyle}" Grid.Row="1" x:Name="button" Content="Kill SteamVR" Margin="0,25,0,25" Click="KillSteamVRButton_Click" FontSize="24"/>
-                <Button Style="{DynamicResource AccentedSquareButtonStyle}" Grid.Row="2" x:Name="button2" Content="Launch SteamVR" Margin="0,25,0,50" Click="LaunchSteamVRButton_Click" FontSize="36"/>
+                <Button Style="{DynamicResource AccentedSquareButtonStyle}" Grid.Row="2" x:Name="button2" Content="Launch SteamVR" Margin="0,15,0,15" Click="LaunchSteamVRButton_Click" FontSize="36"/>
             </Grid>
         </Grid>
 

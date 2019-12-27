@@ -15,9 +15,9 @@ set(NorthstarLauncher_SOURCES
     MainWindow.xaml
     MainWindow.xaml.cs
     explodedview.jpg
-    matrix.jpeg
     steamvrconfig.json
     packages.config
+    Resources/icon.ico
     Properties/AssemblyInfo.cs
     Properties/Resources.Designer.cs
     Properties/Resources.resx
@@ -41,7 +41,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 
 # Then set the file property.
 set_property(SOURCE explodedview.jpg PROPERTY VS_TOOL_OVERRIDE "Resource")
-set_property(SOURCE matrix.jpeg PROPERTY VS_TOOL_OVERRIDE "Resource")
+set_property(SOURCE Resources/icon.ico PROPERTY VS_TOOL_OVERRIDE "Resource")
 #set_property(SOURCE steamvrconfig.json PROPERTY VS_TOOL_OVERRIDE "Resource")
 
 # Define the executable, including any .cs files. 
@@ -61,6 +61,7 @@ csharp_set_xaml_cs_properties(
     Properties/Resources.resx
     Properties/Settings.Designer.cs
     Properties/Settings.settings
+    Resources/icon.ico
 )
 
 set_property(SOURCE App.xaml PROPERTY VS_XAML_TYPE "ApplicationDefinition")
@@ -100,8 +101,7 @@ set_property(TARGET NorthstarLauncher PROPERTY
     ${CMAKE_BINARY_DIR}/packages/ControlzEx.3.0.2.4/lib/net462/ControlzEx.dll)
 
 
-    
-
+set_property(TARGET NorthstarLauncher PROPERTY VS_GLOBAL_ApplicationIcon "${CMAKE_CURRENT_SOURCE_DIR}/Resources/icon.ico")    
 
 # Add in the .NET reference libraries.
 set_property(TARGET NorthstarLauncher PROPERTY VS_DOTNET_REFERENCES
@@ -116,7 +116,8 @@ set_property(TARGET NorthstarLauncher PROPERTY VS_DOTNET_REFERENCES
 "System.Net.Http"
 "System.Xaml"
 "System.Xml"
-"System.Xml.Linq"
+"System.Xml.Linq",
+"System.Windows.Forms",
 "WindowsBase"
 )
 
