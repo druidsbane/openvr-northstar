@@ -14,6 +14,12 @@ namespace NorthstarLauncher
             global::Properties.Settings.Default.Save();
         }
 
+        private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show("Unhandled exception:" + e.Exception.Message + "\n" + e.ToString() + "\n\nPlease contact the developer with these details so they can be fixed.", "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            e.Handled = true;
+        }
+
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             //// get the current app style (theme and accent) from the application

@@ -80,7 +80,6 @@ namespace NorthstarLauncher
             InstallStructureCoreSteamVRDriver();
             LaunchSteamVR();
             AdjustNorthstarResolution();
-
         }
 
         private void AdjustNorthstarResolution()
@@ -260,10 +259,19 @@ namespace NorthstarLauncher
 
         private void CopyReadOnly(string src, string dest)
         {
-            var attr = File.GetAttributes(dest);
-            File.SetAttributes(dest, attr & ~FileAttributes.ReadOnly);
+            if (File.Exists(dest))
+            {
+                var attr = File.GetAttributes(dest);
+                File.SetAttributes(dest, attr & ~FileAttributes.ReadOnly);
+            }
+
             File.Copy(src, dest, true);
-            File.SetAttributes(dest, attr & FileAttributes.ReadOnly);
+
+            if (File.Exists(dest))
+            {
+                var attr = File.GetAttributes(dest);
+                File.SetAttributes(dest, attr & FileAttributes.ReadOnly);
+            }
         }
 
         private void WriteAllTextReadOnly(string dest, string text)
