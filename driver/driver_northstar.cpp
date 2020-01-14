@@ -98,6 +98,10 @@ CNorthStarDeviceDriver::CNorthStarDeviceDriver()
 	}
 	s_logger.DriverLog("NorthStar:: Window Location of NorthStar Headset X is  %i\n", m_nWindowX);
 
+
+	// avoid "not fullscreen" warnings from vrmonitor
+	vr::VRProperties()->SetBoolProperty(m_ulPropertyContainer, Prop_IsOnDesktop_Bool, true);
+
 	// this should for most cases be zero, but we will leave in the option to change it,
 	// for anyone that does something funky
 	m_nWindowY = vr::VRSettings()->GetInt32("driver_northstar", "headsetwindowY");
@@ -180,7 +184,7 @@ CNorthStarDeviceDriver::CNorthStarDeviceDriver()
 	//  m/s
 	m_HeadPose.vecVelocity[0] = 0.f;
 	m_HeadPose.vecVelocity[1] = 0.f;
-	m_HeadPose.vecVelocity[3] = 0.f;
+	m_HeadPose.vecVelocity[2] = 0.f;
 
 	// ident
 	m_HeadPose.qWorldFromDriverRotation.x = 0.f;
@@ -340,12 +344,12 @@ void CNorthStarDeviceDriver::GetWindowBounds(int32_t* pnX, int32_t* pnY, uint32_
 
 bool CNorthStarDeviceDriver::IsDisplayOnDesktop()
 {
-	return false;
+	return true;
 }
 
 bool CNorthStarDeviceDriver::IsDisplayRealDisplay()
 {
-	return true;
+	return false;
 }
 
 void CNorthStarDeviceDriver::GetRecommendedRenderTargetSize(uint32_t* pnWidth, uint32_t* pnHeight)

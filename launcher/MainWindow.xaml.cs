@@ -79,6 +79,8 @@ namespace NorthstarLauncher
             InstallLeapSteamVRDriver();
             InstallStructureCoreSteamVRDriver();
             LaunchSteamVR();
+
+            WaitForProcesses(new string[] { "vrmonitor", "vrserver", "vrstartup" });
             AdjustNorthstarResolution();
         }
 
@@ -96,7 +98,6 @@ namespace NorthstarLauncher
                 //listBox1.Items.Add("Primary Screen: " + screen.Primary.ToString());
             }
 
-            WaitForProcesses(new string[] { "vrmonitor", "vrserver", "vrstartup" });
             Display.MonitorChanger.UpdateNorthstarResolution();
         }
 
@@ -152,7 +153,7 @@ namespace NorthstarLauncher
             }
             else if (installT265Driver.IsChecked == true)
             {
-                //steamvrConfig["TrackingOverrides"]["/devices/t265/<serial>"] = "/user/head";
+                steamvrConfig["TrackingOverrides"]["/devices/sample/CTRL_1234"] = "/user/head";
             }
         }
 
@@ -255,6 +256,12 @@ namespace NorthstarLauncher
             }
 
             ZipFile.ExtractToDirectory(structureCoreDriverZip, driverDir);
+            if (Directory.Exists(driverDir + "/structurecore"))
+            {
+                Directory.Move(driverDir, driverDir + "tmp");
+                Directory.Move(driverDir + "tmp" + "/structurecore", driverDir);
+                Directory.Delete(driverDir + "tmp", true);
+            }
         }
 
         private void CopyReadOnly(string src, string dest)
@@ -344,6 +351,11 @@ namespace NorthstarLauncher
                 global::Properties.Settings.Default["SteamVRCalibrationPath"] = path;
             }
         }
+
+        private void resetRefreshRateButton_Click(object sender, RoutedEventArgs e)
+        {
+            AdjustNorthstarResolution();
+        }
     }
 }
 
@@ -382,7 +394,7 @@ namespace Display
                                 device.DeviceName,
                                 ref otherDeviceMode,
                                 (IntPtr)null,
-                                (ChangeDisplaySettingsFlags.CDS_UPDATEREGISTRY | ChangeDisplaySettingsFlags.CDS_NORESET),
+                                (ChangeDisplaySettingsFlags.CDS_UPDATEREGISTRY | ChangeDisplaySettingsFlags.CDS_RESET),
                                 IntPtr.Zero);
                         }
 
@@ -399,7 +411,7 @@ namespace Display
                                 device.DeviceName,
                                 ref otherDeviceMode,
                                 (IntPtr)null,
-                                (ChangeDisplaySettingsFlags.CDS_UPDATEREGISTRY | ChangeDisplaySettingsFlags.CDS_NORESET),
+                                (ChangeDisplaySettingsFlags.CDS_UPDATEREGISTRY | ChangeDisplaySettingsFlags.CDS_RESET),
                                 IntPtr.Zero);
                         }
                     }
