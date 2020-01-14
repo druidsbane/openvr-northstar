@@ -1,5 +1,4 @@
-﻿// Copyright (c) 2018 Leap Motion. All rights reserved. Proprietary and confidential.
-#include "driver_northstar.h"
+﻿#include "driver_northstar.h"
 #include "utility_northstar.h"
 #include "driverlog_northstar.h"
 #include <chrono>

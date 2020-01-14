@@ -1,5 +1,4 @@
-﻿// Copyright (c) 2018 Leap Motion. All rights reserved. Proprietary and confidential.
-#pragma once
+﻿#pragma once
 #include "watchdog_northstar.h"
 
 bool g_bExiting = false;

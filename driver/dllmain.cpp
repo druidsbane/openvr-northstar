@@ -1,4 +1,3 @@
-// Copyright (c) 2018 Leap Motion. All rights reserved. Proprietary and confidential.
 
 #include <openvr_driver.h>
 #include "driverlog_northstar.h"
