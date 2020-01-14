@@ -1,5 +1,7 @@
 # OpenVR Northstar
 
+This is a community driver to support the North Star headset on OpenVR.  It is unafiliated with Leap Motion/Ultra Leap.
+
 ## Build Instructions
 
 - Launch PowerShell
