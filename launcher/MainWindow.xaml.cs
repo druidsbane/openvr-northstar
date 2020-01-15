@@ -78,6 +78,7 @@ namespace NorthstarLauncher
             InstallSteamVRDriver();
             InstallLeapSteamVRDriver();
             InstallStructureCoreSteamVRDriver();
+            InstallT265SteamVRDriver();
             LaunchSteamVR();
 
             WaitForProcesses(new string[] { "vrmonitor", "vrserver", "vrstartup" });
@@ -260,6 +261,34 @@ namespace NorthstarLauncher
             {
                 Directory.Move(driverDir, driverDir + "tmp");
                 Directory.Move(driverDir + "tmp" + "/structurecore", driverDir);
+                Directory.Delete(driverDir + "tmp", true);
+            }
+        }
+
+        private void InstallT265SteamVRDriver()
+        {
+            if (installT265Driver.IsChecked != true)
+            {
+                return;
+            }
+
+            var driverDir = steamvrRoot + @"steamapps/common/SteamVR/drivers/sample";
+            if (Directory.Exists(driverDir))
+            {
+                Directory.Delete(driverDir, true);
+            }
+
+            var structureCoreDriverZip = @"openvr-t265.zip";
+            if (!File.Exists(structureCoreDriverZip))
+            {
+                return;
+            }
+
+            ZipFile.ExtractToDirectory(structureCoreDriverZip, driverDir);
+            if (Directory.Exists(driverDir + "/sample"))
+            {
+                Directory.Move(driverDir, driverDir + "tmp");
+                Directory.Move(driverDir + "tmp" + "/sample", driverDir);
                 Directory.Delete(driverDir + "tmp", true);
             }
         }
