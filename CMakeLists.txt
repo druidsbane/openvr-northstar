@@ -30,7 +30,6 @@ elseif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   set(ARCH_TARGET osx32)
 
 elseif(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-  set(SDL_REQUIRED_LIBRARIES ${SDL_REQUIRED_LIBRARIES} SDL2main)
   add_definitions(-D_WIN32)
   set(ARCH_TARGET win${PLATFORM})
 
@@ -115,6 +114,11 @@ set(OPENVR_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/3rd/openvr/headers)
 
 # -----------------------------------------------------------------------------
 ## SUBDIRECTORIES ##
+
+include_directories(	
+  .
+  ${OPENVR_INCLUDE_DIR}	
+)
 
 add_subdirectory(driver)
 add_subdirectory(launcher)
