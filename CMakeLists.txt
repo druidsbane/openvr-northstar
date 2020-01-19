@@ -35,10 +35,6 @@ elseif(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
   # Binaries path for thirdparties are not generics so we try to guess their suffixes.
   set(WINDOWS_PATH_SUFFIXES win${PLATFORM} Win${PLATFORM} x${PLATFORM})
-
-  if(${PLATFORM} MATCHES 64)
-    message(WARNING "SDL x64 runtime binaries not provided on Windows.")
-  endif()
 endif()
 
 # -----------------------------------------------------------------------------
