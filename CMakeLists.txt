@@ -115,8 +115,7 @@ set(OPENVR_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/3rd/openvr/headers)
 # -----------------------------------------------------------------------------
 ## SUBDIRECTORIES ##
 
-include_directories(	
-  .
+include_directories(
   ${OPENVR_INCLUDE_DIR}	
 )
 
