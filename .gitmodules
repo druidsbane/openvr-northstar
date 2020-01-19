@@ -1,0 +1,4 @@
+[submodule "3rd/openvr"]
+	path = 3rd/openvr
+	url = https://github.com/ValveSoftware/openvr.git
+	ignore = dirty

@@ -17,8 +17,6 @@ if(NOT PLATFORM)
 endif()
 message(STATUS "Compilation set for ${PLATFORM}bits architectures.")
 
-set(SDL_REQUIRED_LIBRARIES SDL2)
-
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
   add_definitions(-DLINUX -DPOSIX)
   set(ARCH_TARGET linux64)
@@ -46,12 +44,6 @@ endif()
 
 # -----------------------------------------------------------------------------
 ## PATHS ##
-
-#set(THIRDPARTY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty)
-#set(SHARED_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/shared)
-
-set(THIRDPARTY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../openvr/samples/thirdparty)
-set(SHARED_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../openvr/samples/shared)
 
 # Check that the steamVR SDK is installed 
 # (needed to prevent a segfault in OpenVR).
@@ -105,83 +97,13 @@ endif()
 # -----------------------------------------------------------------------------
 ## LIBRARIES ##
 
-## OpenGL / GLU
-find_package(OpenGL REQUIRED)
-
-## GLEW 1.11
-if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-  # On GNU/Linux, glew can be found on the package manager. 
-  find_package(GLEW 1.11 REQUIRED)
-else()
-  # Otherwise, use the shipped binaries.
-  find_library(GLEW_LIBRARIES
-    NAMES
-      GLEW
-      glew32
-    PATHS
-      ${THIRDPARTY_DIR}/glew/glew-1.11.0/lib/Release
-    PATH_SUFFIXES
-      osx32
-      ${WINDOWS_PATH_SUFFIXES}
-  )
-  set(GLEW_INCLUDE_DIR ${THIRDPARTY_DIR}/glew/glew-1.11.0/include)
-endif()
-
-## SDL 2
-## osx32 and linux32 cmake can spot each others' .so and .a files, so keep them apart
-if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-  foreach(lib ${SDL_REQUIRED_LIBRARIES})
-    find_library(${lib}_LIBRARY
-      NAMES
-        ${lib}
-      PATHS
-        ${THIRDPARTY_DIR}/sdl2-2.0.3/bin
-      PATH_SUFFIXES
-        osx32
-    )
-    list(APPEND SDL2_LIBRARIES ${${lib}_LIBRARY})
-  endforeach()
-else()
-  foreach(lib ${SDL_REQUIRED_LIBRARIES})
-    find_library(${lib}_LIBRARY
-      NAMES
-        ${lib}
-      PATHS
-        ${THIRDPARTY_DIR}/sdl2-2.0.3/bin
-      PATH_SUFFIXES
-        linux${PLATFORM}
-        ${WINDOWS_PATH_SUFFIXES}
-    )
-    list(APPEND SDL2_LIBRARIES ${${lib}_LIBRARY})
-  endforeach()
-endif()
-set(SDL2_INCLUDE_DIR ${THIRDPARTY_DIR}/sdl2-2.0.3/include)
-
-## Vulkan
-if(NOT (${CMAKE_SYSTEM_NAME} MATCHES "Darwin"))
-  find_library(VULKAN_LIBRARY
-      NAMES
-        vulkan-1
-        vulkan
-      PATHS
-        ${THIRDPARTY_DIR}/vulkan-1.0.49.0/lib
-      PATH_SUFFIXES
-        linux${PLATFORM}
-        ${WINDOWS_PATH_SUFFIXES}
-      NO_DEFAULT_PATH
-  )
-  set(VULKAN_INCLUDE_DIR ${THIRDPARTY_DIR}/vulkan-1.0.49.0/include)
-endif()
-
 ## OpenVR API path
 find_library(OPENVR_LIBRARIES
   NAMES
     openvr_api
   PATHS
-    ${CMAKE_CURRENT_SOURCE_DIR}/../bin
-    ${CMAKE_CURRENT_SOURCE_DIR}/../lib
-    ${CMAKE_CURRENT_SOURCE_DIR}/../openvr/bin
-    ${CMAKE_CURRENT_SOURCE_DIR}/../openvr/lib
+    ${CMAKE_CURRENT_SOURCE_DIR}/3rd/openvr/bin
+    ${CMAKE_CURRENT_SOURCE_DIR}/3rd/openvr/lib
   PATH_SUFFIXES
     osx32
     linux64
@@ -189,30 +111,7 @@ find_library(OPENVR_LIBRARIES
   NO_DEFAULT_PATH
   NO_CMAKE_FIND_ROOT_PATH
 )
-set(OPENVR_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../headers)
-set(OPENVR_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../openvr/headers)
-
-
-# -----------------------------------------------------------------------------
-## SHARED SOURCES ##
-
-file(GLOB SHARED_SRC_FILES
-  ${SHARED_SRC_DIR}/*.cpp
-  ${SHARED_SRC_DIR}/*.h
-)
-
-include_directories(
-  .
-  ${OPENGL_INCLUDE_DIR}
-  ${GLEW_INCLUDE_DIR}
-  ${SDL2_INCLUDE_DIR}
-  ${QT_INCLUDE_DIRS}
-  ${OPENVR_INCLUDE_DIR}
-)
-
-if(NOT (${CMAKE_SYSTEM_NAME} MATCHES "Darwin"))
-  include_directories(${VULKAN_INCLUDE_DIR})
-endif()
+set(OPENVR_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/3rd/openvr/headers)
 
 # -----------------------------------------------------------------------------
 ## SUBDIRECTORIES ##
