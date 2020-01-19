@@ -213,7 +213,7 @@ namespace NorthstarLauncher
                 Directory.Delete(driverDir, true);
             }
 
-            var leapDriverZip = @"driver_leap_1.0-157_x86.zip";
+            var leapDriverZip = @"driver_leap_1.0-158_x64.zip";
             var leapDriverZipLocal = leapDriverZip;
             var leapDriverZipUrl = @"https://github.com/SDraw/driver_leap/releases/download/1.0/" + leapDriverZip;
             if (!File.Exists(leapDriverZipLocal))
