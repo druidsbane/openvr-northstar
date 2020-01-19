@@ -16,8 +16,7 @@ This is a community driver to support the North Star headset on OpenVR.  It is u
 - Launch PowerShell
 - Run checkout the source and run `build.bat` from the root directory or run the following commands:
 ```
-git clone --depth 1 https://github.com/ValveSoftware/openvr.git openvr
-git clone https://github.com/druidsbane/openvr-northstar.git
+git clone --recurse-submodules https://github.com/druidsbane/openvr-northstar.git
 cd openvr-northstar
 cmake -B build .
 cmake --build ./build -- /t:restore,Build
