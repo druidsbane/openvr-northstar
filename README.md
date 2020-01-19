@@ -13,7 +13,7 @@ This is a community driver to support the North Star headset on OpenVR.  It is u
 - Git (https://git-scm.com/download/win/)
 
 # Installation
-- Launch PowerShell
+- Launch the windows command prompt `cmd`
 - Run the following
 ```
 git clone --recurse-submodules https://github.com/druidsbane/openvr-northstar.git
