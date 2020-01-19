@@ -14,7 +14,7 @@ set(NorthstarLauncher_SOURCES
     App.xaml.cs
     MainWindow.xaml
     MainWindow.xaml.cs
-    explodedview.jpg
+    leap_images/explodedview.jpg
     steamvrconfig.json
     packages.config
     Resources/icon.ico
@@ -25,20 +25,15 @@ set(NorthstarLauncher_SOURCES
     Properties/Settings.settings
 )
 
-#configure_file(${CMAKE_CURRENT_SOURCE_DIR}/explodedview.jpg ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/explodedview.jpg COPYONLY)
-#configure_file(${CMAKE_CURRENT_SOURCE_DIR}/matrix.jpeg ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/matrix.jpeg COPYONLY)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/steamvrconfig.json ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/steamvrconfig.json COPYONLY)
-#configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Resources ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/Resources COPYONLY)
 file(COPY Resources DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
-#add_custom_target(copy-runtime-files ALL COMMAND cmake -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/Resources ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/Resources)
 
 #CMAKE_RUNTIME_OUTPUT_DIRECTORY
-#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 
 # Then set the file property.
-set_property(SOURCE explodedview.jpg PROPERTY VS_TOOL_OVERRIDE "Resource")
+set_property(SOURCE leap_images/explodedview.jpg PROPERTY VS_TOOL_OVERRIDE "Resource")
 set_property(SOURCE Resources/icon.ico PROPERTY VS_TOOL_OVERRIDE "Resource")
 #set_property(SOURCE steamvrconfig.json PROPERTY VS_TOOL_OVERRIDE "Resource")
 

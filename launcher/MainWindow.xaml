@@ -14,7 +14,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="0" Margin="0,20,0,20" x:Name="image1" Source="explodedview.jpg"/>
+            <Image Grid.Column="0" Margin="0,20,0,20" x:Name="image1" Source="leap_images/explodedview.jpg"/>
             <Grid Grid.Column="1" Margin="50,20,50,20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="3*"/>
