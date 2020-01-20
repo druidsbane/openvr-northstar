@@ -6,15 +6,13 @@
     "secondsFromVsyncToPhotons": 0.035000000149011612,
     "serialNumber": "1024"
   },
-  "driver_structurecore": {
-    "enable": true,
-    "edidVid": 53317,
-    "modelNumber": "133782",
-    "secondsFromVsyncToPhotons": 0.035000000149011612,
-    "serialNumber": "1337821"
+  "driver_t265": {
+    "enable": false,
+    "serialNumber": "CTRL_1234"
   },
-  "TrackingOverrides": {
-    "/devices/structurecore/1337821": "/user/head"
+  "driver_structurecore": {
+    "enable": false,
+    "serialNumber": "1337821"
   },
   "steamvr": {
     "requireHmd": false,

@@ -49,6 +49,18 @@ namespace Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool EnableNorthStarDriver {
+            get {
+                return ((bool)(this["EnableNorthStarDriver"]));
+            }
+            set {
+                this["EnableNorthStarDriver"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool InstallLeapDriver {
             get {

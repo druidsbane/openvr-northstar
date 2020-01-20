@@ -119,6 +119,27 @@ namespace NorthstarLauncher
             steamvrConfig["direct_mode"]["enable"] = false;
             steamvrConfig["steamvr"]["activateMultipleDrivers"] = true;
 
+            if (!steamvrConfig.ContainsKey("driver_structurecore"))
+            {
+                steamvrConfig["driver_structurecore"] = new JObject();
+            }
+            if (!steamvrConfig.ContainsKey("driver_t265"))
+            {
+                steamvrConfig["driver_t265"] = new JObject();
+            }
+            if (!steamvrConfig.ContainsKey("driver_leap"))
+            {
+                steamvrConfig["driver_leap"] = new JObject();
+            }
+            if (!steamvrConfig.ContainsKey("driver_northstar"))
+            {
+                steamvrConfig["driver_northstar"] = new JObject();
+            }
+            steamvrConfig["driver_northstar"]["enable"] = enableNorthStarDriver.IsChecked;
+            steamvrConfig["driver_t265"]["enable"] = installT265Driver.IsChecked;
+            steamvrConfig["driver_leap"]["enable"] = installLeapDriver.IsChecked;
+            steamvrConfig["driver_structurecore"]["enable"] = installStructureCoreDriver.IsChecked;
+
             applyTrackingOverrides(steamvrConfig);
 
             WriteAllTextReadOnly(vrSettingsPath, steamvrConfig.ToString());
@@ -154,7 +175,7 @@ namespace NorthstarLauncher
             }
             else if (installT265Driver.IsChecked == true)
             {
-                steamvrConfig["TrackingOverrides"]["/devices/sample/CTRL_1234"] = "/user/head";
+                steamvrConfig["TrackingOverrides"]["/devices/t265/CTRL_1234"] = "/user/head";
             }
         }
 
@@ -272,23 +293,30 @@ namespace NorthstarLauncher
                 return;
             }
 
-            var driverDir = steamvrRoot + @"steamapps/common/SteamVR/drivers/sample";
+            var driverDir = steamvrRoot + @"steamapps/common/SteamVR/drivers/t265";
             if (Directory.Exists(driverDir))
             {
                 Directory.Delete(driverDir, true);
             }
 
-            var structureCoreDriverZip = @"openvr-t265.zip";
-            if (!File.Exists(structureCoreDriverZip))
+            var t265DriverZip = @"openvr-t265-1.0.zip";
+            var t265DriverZipLocal = t265DriverZip;
+            var t265DriverZipUrl = @"https://github.com/druidsbane/openvr-northstar/releases/download/1.0/" + t265DriverZip;
+            if (!File.Exists(t265DriverZipLocal))
             {
-                return;
+                using (var client = new WebClient())
+                {
+                    client.DownloadFile(t265DriverZipUrl, t265DriverZipLocal);
+                }
             }
 
-            ZipFile.ExtractToDirectory(structureCoreDriverZip, driverDir);
-            if (Directory.Exists(driverDir + "/sample"))
+            if (!File.Exists(t265DriverZipLocal)) { MessageBox.Show(@"Failed to download T265 SteamVR Driver"); }
+
+            ZipFile.ExtractToDirectory(t265DriverZip, driverDir);
+            if (Directory.Exists(driverDir + "/t265"))
             {
                 Directory.Move(driverDir, driverDir + "tmp");
-                Directory.Move(driverDir + "tmp" + "/sample", driverDir);
+                Directory.Move(driverDir + "tmp" + "/t265", driverDir);
                 Directory.Delete(driverDir + "tmp", true);
             }
         }

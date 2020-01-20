@@ -8,6 +8,9 @@
     <Setting Name="BackupConfigs" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="EnableNorthStarDriver" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
     <Setting Name="InstallLeapDriver" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>

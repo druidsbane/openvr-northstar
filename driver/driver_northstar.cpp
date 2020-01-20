@@ -67,29 +67,29 @@ CNorthStarDeviceDriver::CNorthStarDeviceDriver()
 	s_logger.DriverLog("NorthStar:: Verbose Mode %d\n", m_Verbose);
 
 	m_flIPD = vr::VRSettings()->GetFloat("driver_northstar", "ipd");
-	vr::VRSettings()->SetFloat(k_pch_SteamVR_Section, k_pch_SteamVR_IPD_Float, m_flIPD);
-	vr::VRProperties()->SetFloatProperty(m_ulPropertyContainer, Prop_UserIpdMeters_Float, m_flIPD);
+	//vr::VRSettings()->SetFloat(k_pch_SteamVR_Section, k_pch_SteamVR_IPD_Float, m_flIPD);
+	//vr::VRProperties()->SetFloatProperty(m_ulPropertyContainer, Prop_UserIpdMeters_Float, m_flIPD);
 	s_logger.DriverLog("MorthStar:: Initial IPD %f\n", m_flIPD);
 
 	m_sSerialNumber = "1024";
-	vr::VRSettings()->SetString(k_pch_Sample_Section, k_pch_Null_SerialNumber_String, m_sSerialNumber.c_str());
-	vr::VRProperties()->SetStringProperty(m_ulPropertyContainer, Prop_SerialNumber_String, m_sSerialNumber.c_str());
+	//vr::VRSettings()->SetString(k_pch_Sample_Section, k_pch_Null_SerialNumber_String, m_sSerialNumber.c_str());
+	//vr::VRProperties()->SetStringProperty(m_ulPropertyContainer, Prop_SerialNumber_String, m_sSerialNumber.c_str());
 
 	m_sModelNumber = "0";
-	vr::VRSettings()->SetString(k_pch_Sample_Section, k_pch_Null_ModelNumber_String, m_sModelNumber.c_str());
-	vr::VRProperties()->SetStringProperty(m_ulPropertyContainer, Prop_RenderModelName_String, m_sModelNumber.c_str());
+	//vr::VRSettings()->SetString(k_pch_Sample_Section, k_pch_Null_ModelNumber_String, m_sModelNumber.c_str());
+	//vr::VRProperties()->SetStringProperty(m_ulPropertyContainer, Prop_RenderModelName_String, m_sModelNumber.c_str());
 
 	m_nDirectModeEnabled = false;
-	vr::VRSettings()->SetBool(k_pch_Sample_Section, k_pch_DirectMode_Enable_Bool, m_nDirectModeEnabled);
-	vr::VRProperties()->SetBoolProperty(m_ulPropertyContainer, Prop_HasDriverDirectModeComponent_Bool, false); // Should be false.
+	//vr::VRSettings()->SetBool(k_pch_Sample_Section, k_pch_DirectMode_Enable_Bool, m_nDirectModeEnabled);
+	//vr::VRProperties()->SetBoolProperty(m_ulPropertyContainer, Prop_HasDriverDirectModeComponent_Bool, false); // Should be false.
 
 	m_nVendorId = 0xD041;
-	vr::VRSettings()->SetInt32(k_pch_Sample_Section, k_pch_DirectMode_EdidVid_Int32, m_nVendorId);
-	vr::VRProperties()->SetInt32Property(m_ulPropertyContainer, Prop_EdidVendorID_Int32, m_nVendorId);
+	//vr::VRSettings()->SetInt32(k_pch_Sample_Section, k_pch_DirectMode_EdidVid_Int32, m_nVendorId);
+	//vr::VRProperties()->SetInt32Property(m_ulPropertyContainer, Prop_EdidVendorID_Int32, m_nVendorId);
 
 	m_nProductId = 0;
-	vr::VRSettings()->SetInt32(k_pch_Sample_Section, k_pch_DirectMode_EdidPid_Int32, m_nProductId);
-	vr::VRProperties()->SetInt32Property(m_ulPropertyContainer, Prop_EdidProductID_Int32, m_nProductId);
+	//vr::VRSettings()->SetInt32(k_pch_Sample_Section, k_pch_DirectMode_EdidPid_Int32, m_nProductId);
+	//vr::VRProperties()->SetInt32Property(m_ulPropertyContainer, Prop_EdidProductID_Int32, m_nProductId);
 
 	m_nWindowX = vr::VRSettings()->GetInt32("driver_northstar", "headsetwindowX");
 	if (m_nWindowX < 0) {
@@ -99,7 +99,7 @@ CNorthStarDeviceDriver::CNorthStarDeviceDriver()
 
 
 	// avoid "not fullscreen" warnings from vrmonitor
-	vr::VRProperties()->SetBoolProperty(m_ulPropertyContainer, Prop_IsOnDesktop_Bool, true);
+	//vr::VRProperties()->SetBoolProperty(m_ulPropertyContainer, Prop_IsOnDesktop_Bool, true);
 
 	// this should for most cases be zero, but we will leave in the option to change it,
 	// for anyone that does something funky
@@ -122,7 +122,7 @@ CNorthStarDeviceDriver::CNorthStarDeviceDriver()
 
 	m_flSecondsFromVsyncToPhotons = vr::VRSettings()->GetFloat("driver_northstar", "photonlatency");
 	s_logger.DriverLog("NorthStar:: Photon Latency %g\n", m_flSecondsFromVsyncToPhotons);
-	vr::VRSettings()->SetFloat(k_pch_Sample_Section, k_pch_Null_SecondsFromVsyncToPhotons_Float, m_flSecondsFromVsyncToPhotons);
+	//vr::VRSettings()->SetFloat(k_pch_Sample_Section, k_pch_Null_SecondsFromVsyncToPhotons_Float, m_flSecondsFromVsyncToPhotons);
 
 	m_flDisplayFrequency = vr::VRSettings()->GetFloat("driver_northstar", "headsetfrequency");
 	s_logger.DriverLog("NorthStar:: Display Frequency %f\n", m_flDisplayFrequency);
