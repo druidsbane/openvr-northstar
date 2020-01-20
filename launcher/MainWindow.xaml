@@ -27,8 +27,8 @@
                     <CheckBox x:Name="backupConfigs" IsChecked="{Binding Source={StaticResource Settings}, Path=Default.BackupConfigs}">Backup Configs</CheckBox>
                     <CheckBox x:Name="enableNorthStarDriver" IsChecked="{Binding Source={StaticResource Settings}, Path=Default.EnableNorthStarDriver}">Enable North Star Driver</CheckBox>
                     <CheckBox x:Name="installLeapDriver" IsChecked="{Binding Source={StaticResource Settings}, Path=Default.InstallLeapDriver}">Install Leap Driver</CheckBox>
-                    <CheckBox x:Name="installStructureCoreDriver" IsChecked="{Binding Source={StaticResource Settings}, Path=Default.InstallStructureCoreDriver}">Install Structure Core Driver and Override Tracking</CheckBox>
                     <CheckBox x:Name="installT265Driver" IsChecked="{Binding Source={StaticResource Settings}, Path=Default.InstallT265Driver}">Install T265 Driver and Override Tracking</CheckBox>
+                    <CheckBox x:Name="installStructureCoreDriver" IsEnabled="False" IsChecked="{Binding Source={StaticResource Settings}, Path=Default.InstallStructureCoreDriver}">Install Structure Core Driver and Override Tracking</CheckBox>
                 </StackPanel>
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
