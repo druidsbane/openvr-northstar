@@ -35,7 +35,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 # Then set the file property.
 set_property(SOURCE leap_images/explodedview.jpg PROPERTY VS_TOOL_OVERRIDE "Resource")
 set_property(SOURCE Resources/icon.ico PROPERTY VS_TOOL_OVERRIDE "Resource")
-#set_property(SOURCE steamvrconfig.json PROPERTY VS_TOOL_OVERRIDE "Resource")
 
 # Define the executable, including any .cs files. 
 # The .resx and other Properties files are optional here, but including them makes them visible in the VS solution for easy editing. 
