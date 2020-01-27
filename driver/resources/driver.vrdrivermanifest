@@ -1,9 +1,4 @@
 {
-
-	"driver_northstar" : {
-		"testvalue" : 1.0
-	},
-
 	"alwaysActivate": true,
 	"name" : "northstar",
 	"directory" : "",

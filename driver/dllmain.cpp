@@ -43,6 +43,7 @@ HMD_DLL_EXPORT void* HmdDriverFactory(const char *pInterfaceName, int *pReturnCo
 }
 
 
+#if defined( WIN32)
 // we don't do anything here yet...
 BOOL APIENTRY DllMain(HMODULE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 {
@@ -60,3 +61,4 @@ BOOL APIENTRY DllMain(HMODULE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
     };
     return TRUE;
 }
+#endif

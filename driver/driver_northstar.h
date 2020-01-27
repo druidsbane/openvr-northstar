@@ -8,7 +8,10 @@
 #include <openvr_driver.h>
 #include <thread>
 #include <vector>
+
+#if defined( WIN32)
 #include <windows.h>
+#endif
 
 #include "driverlog_northstar.h"
 #include "deformation_northstar.h"
@@ -153,8 +156,9 @@ private:
     int m_initSolverIters;
     int m_optSolverIters;
 
+    #if defined( WIN32)
     static BOOL CALLBACK CNorthStarDeviceDriver::MyInfoEnumProc(HMONITOR hMon, HDC hdc, LPRECT lprcMonitor, LPARAM pData);
-
+    #endif
 };
 
 //-----------------------------------------------------------------------------

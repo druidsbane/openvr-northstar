@@ -1,5 +1,7 @@
 #pragma once
 
+#include <math.h>
+
 // min set of functions needed
 const float LP_PI = 3.14159265f; // float error, will be 3.141592741f.
 const float kEpsilon = 0.00001f;
@@ -53,7 +55,7 @@ public:
         return Vector3(0.f, 0.f, -1.f);
     };
 
-    inline Vector3 operator-(Vector3& rhs) {
+    inline Vector3 operator-(const Vector3& rhs) {
         Vector3 ret;
         ret.x = (x - rhs.x);
         ret.y = (y - rhs.y);
@@ -65,7 +67,7 @@ public:
     return Vector3(-x, -y, -z);
   }
 
-    inline Vector3 operator+(Vector3& rhs) {
+    inline Vector3 operator+(const Vector3& rhs) {
         Vector3 ret;
         ret.x = (x + rhs.x);
         ret.y = (y + rhs.y);
@@ -73,7 +75,7 @@ public:
         return ret;
     }
 
-  inline Vector3& operator+= (Vector3& v) {
+  inline Vector3& operator+= (const Vector3& v) {
     this->x += v.x;
     this->y += v.y;
     this->z += v.z;
@@ -97,14 +99,6 @@ public:
     }
 
     inline Vector3 operator*(const float& d) {
-        Vector3 ret;
-        ret.x = (x * d);
-        ret.y = (y * d);
-        ret.z = (z * d);
-        return ret;
-    }
-
-    inline Vector3 operator*(float& d) {
         Vector3 ret;
         ret.x = (x * d);
         ret.y = (y * d);
@@ -283,14 +277,14 @@ public:
         ret.y = (y * d);
         return ret;
     }
-    inline Vector2 operator-(Vector2& rhs) {
+    inline Vector2 operator-(const Vector2& rhs) {
         Vector2 ret;
         ret.x = (x - rhs.x);
         ret.y = (y - rhs.y);
         return ret;
     }
 
-    inline Vector2 operator+(Vector2& rhs) {
+    inline Vector2 operator+(const Vector2& rhs) {
         Vector2 ret;
         ret.x = (x + rhs.x);
         ret.y = (y + rhs.y);

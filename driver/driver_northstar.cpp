@@ -6,6 +6,7 @@
 
 // NORTHSTAR DRIVER;
 
+#if defined( WIN32)
 // this has to be a funky windows call back function and this is a placeholder for convience for dev
 // work, once we have proper firmware data set and ability to power the headset on / off via software
 // this needs to be done differently.
@@ -22,7 +23,7 @@ BOOL CALLBACK CNorthStarDeviceDriver::MyInfoEnumProc(HMONITOR hMon, HDC hdc, LPR
 
 	return value;
 }
-
+#endif
 
 CNorthStarDeviceDriver::CNorthStarDeviceDriver()
 {
@@ -52,7 +53,9 @@ CNorthStarDeviceDriver::CNorthStarDeviceDriver()
 	m_optSolverIters = 0;
 	m_uvReadCount = 0;
 
-	EnumDisplayMonitors(NULL, NULL, MyInfoEnumProc, 0);
+	#if defined( WIN32)
+		EnumDisplayMonitors(NULL, NULL, MyInfoEnumProc, 0);
+	#endif
 
 	s_logger.SetLogger(vr::VRDriverLog());
 	m_leftEye.SetLogger(&s_logger);
