@@ -7,9 +7,10 @@ OFFSET_X=${1:-0}
 cmake -B build .
 cmake --build ./build
 
-which jq
-if [[ $? != 0 ]] ; then
-    sudo apt install jq
+PACKAGES="steam steam-devices libx11-dev cmake jq"
+MISSING_COUNT=$(dpkg-query -l ${PACKAGES} 2>&1 | grep -i "no packages" | wc -l)
+if [[ ${MISSING_COUNT} != "0" ]]; then
+sudo DEBIAN_FRONTEND=noninteractive apt install -y ${PACKAGES}
 fi
 
 PATHS="${HOME}/.config/openvr/openvrpaths.vrpath"

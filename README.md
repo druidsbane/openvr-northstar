@@ -13,6 +13,8 @@ This is a community driver to support the North Star headset on OpenVR.  It is u
 - Git (https://git-scm.com/download/win/)
 
 # Installation
+
+## Windows
 - Launch the windows command prompt `cmd`
 - Run the following
 ```
@@ -21,3 +23,23 @@ cd openvr-northstar
 build.bat
 ```
 - Once it is built navigate to the `bin/win64` directory and launch `NorthstarLauncher.exe`
+
+## Linux
+- Launch a terminal
+- Run the following
+```
+git clone --recurse-submodules https://github.com/druidsbane/openvr-northstar.git
+cd openvr-northstar
+./linux.sh [northstarXOffset, eg: 1920]
+```
+- Launch SteamVR
+
+## macOS
+- Launch a terminal
+- Run the following
+```
+git clone --recurse-submodules https://github.com/druidsbane/openvr-northstar.git
+cd openvr-northstar
+./macos.sh
+```
+- Launch SteamVR
