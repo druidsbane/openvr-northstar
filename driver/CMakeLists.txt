@@ -21,6 +21,8 @@ target_link_libraries(${TARGET_NAME}
   ${CMAKE_DL_LIBS}
 )
 
+set_target_properties(${TARGET_NAME} PROPERTIES PREFIX "")
+
 
 # Force output directory destination, especially for MSVC (@so7747857).
 function(setTargetOutputDirectory target)

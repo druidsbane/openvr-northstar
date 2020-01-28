@@ -2,6 +2,9 @@
 
 set -ex
 
+cmake -B build .
+make
+
 which -s brew
 if [[ $? != 0 ]] ; then
     echo Install Homebrew
