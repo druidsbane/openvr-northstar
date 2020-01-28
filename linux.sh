@@ -4,7 +4,7 @@ set -ex
 
 OFFSET_X=${1:-0}
 
-PACKAGES="steam steam-devices libx11-dev cmake jq"
+PACKAGES="steam steam-devices libx11-dev cmake jq mesa-vulkan-drivers mesa-vulkan-drivers:i386 vulkan-utils"
 MISSING_COUNT=$(dpkg-query -l ${PACKAGES} 2>&1 | grep -i "no packages" | wc -l)
 if [[ ${MISSING_COUNT} != "0" ]]; then
 sudo DEBIAN_FRONTEND=noninteractive apt install -y ${PACKAGES}
