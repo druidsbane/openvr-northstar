@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -ex
+#set -ex
 
 OFFSET_X=${1:-0}
 
@@ -14,7 +14,7 @@ cmake -B build .
 cmake --build ./build
 
 PATHS="${HOME}/.config/openvr/openvrpaths.vrpath"
-cat "${PATHS}"
+#cat "${PATHS}"
 RUNTIME=`jq -r '.runtime[0]' "${PATHS}"`
 STEAMVRCONFIG_DIR=`jq -r '.config[0]' "${PATHS}"`
 DRIVER_BASE_DIR="${RUNTIME}/drivers/northstar/"
@@ -32,3 +32,5 @@ fi
 
 jq -s '.[0] * .[1]' "${STEAMVRCONFIG_DIR}/steamvr.vrsettings" "launcher/steamvrconfig.json" > "${STEAMVRCONFIG_DIR}/steamvr.vrsettings.tmp"
 jq ".driver_northstar.headsetwindowX=${OFFSET_X}" "${STEAMVRCONFIG_DIR}/steamvr.vrsettings.tmp" > "${STEAMVRCONFIG_DIR}/steamvr.vrsettings"
+
+echo export VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/nvidia_icd.json | sudo tee /etc/profile.d/steamvr-vulkan.sh
