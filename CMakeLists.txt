@@ -7,6 +7,8 @@ include(CPack)
 # -----------------------------------------------------------------------------
 ## SYSTEM PROPERTIES ##
 
+set(SHARED_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/3rd/openvr/samples/shared)
+
 # If not set, determines the running platform architecture.
 if(NOT PLATFORM)
   if(CMAKE_SIZEOF_VOID_P MATCHES 8)
@@ -40,14 +42,14 @@ endif()
 # -----------------------------------------------------------------------------
 ## PATHS ##
 
-# Check that the steamVR SDK is installed 
-# (needed to prevent a segfault in OpenVR).
-if(CMAKE_HOST_UNIX)
-  find_file(OPENVRPATHS openvrpaths.vrpath PATHS $ENV{HOME}/.config/openvr "$ENV{HOME}/Library/Application Support/OpenVR/.openvr")
-  if(${OPENVRPATHS} MATCHES OPENVRPATHS-NOTFOUND)
-    message(FATAL_ERROR "${OPENVRPATHS} Please install SteamVR SDK to continue..")
-  endif()
-endif()
+## Check that the steamVR SDK is installed 
+## (needed to prevent a segfault in OpenVR).
+#if(CMAKE_HOST_UNIX)
+#  find_file(OPENVRPATHS openvrpaths.vrpath PATHS $ENV{HOME}/.config/openvr "$ENV{HOME}/Library/Application Support/OpenVR/.openvr")
+#  if(${OPENVRPATHS} MATCHES OPENVRPATHS-NOTFOUND)
+#    message(FATAL_ERROR "${OPENVRPATHS} Please install SteamVR SDK to continue..")
+#  endif()
+#endif()
 
 # Default output directory.
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/${ARCH_TARGET})
@@ -106,7 +108,10 @@ find_library(OPENVR_LIBRARIES
   NO_DEFAULT_PATH
   NO_CMAKE_FIND_ROOT_PATH
 )
-set(OPENVR_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/3rd/openvr/headers)
+set(OPENVR_INCLUDE_DIR
+  ${CMAKE_CURRENT_SOURCE_DIR}/3rd/openvr/headers
+  ${CMAKE_CURRENT_SOURCE_DIR}/3rd/openvr/samples/shared
+)
 
 # -----------------------------------------------------------------------------
 ## SUBDIRECTORIES ##
@@ -116,6 +121,9 @@ include_directories(
 )
 
 add_subdirectory(driver)
-add_subdirectory(launcher)
+
+if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+  add_subdirectory(launcher)
+endif()
 
 # -----------------------------------------------------------------------------

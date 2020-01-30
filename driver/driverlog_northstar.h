@@ -7,6 +7,10 @@
 #include <stdio.h>
 #include <stdarg.h>
 
+#if !defined( WIN32)
+#define vsnprintf_s vsnprintf
+#endif
+
 const int MAXLOGLEN = 2048;
 
 class LPDriverLogger  {
