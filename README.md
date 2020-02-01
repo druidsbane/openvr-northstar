@@ -25,13 +25,17 @@ build.bat
 - Once it is built navigate to the `bin/win64` directory and launch `NorthstarLauncher.exe`
 
 ## Linux
+- Tested on Ubuntu 19.10 and Pop!_OS 19.10
+- Install Steam and SteamVR
+- Launch SteamVR at least once
 - Launch a terminal
 - Run the following
 ```
 git clone --recurse-submodules https://github.com/druidsbane/openvr-northstar.git
 cd openvr-northstar
-./linux.sh [northstarXOffset, eg: 1920]
+./linux.sh
 ```
+- Answer the `./linux.sh` wizard questions
 - Launch SteamVR
 
 ## macOS
